@@ -12,10 +12,29 @@ import java.util.List;
  */
 public class GraphVisualization {
 
-    public static Graph creatGraph(List<EdgeModel> edgeModels){
-       Graph graph=new SingleGraph("dem01");
+    Graph graph;
+
+    public GraphVisualization(){
+        graph=new SingleGraph("dem01");
+        graph.addAttribute("ui.stylesheet",
+                "url(E:/研一/云计算/数据展示/GraphXVisualization/src/main/resources/stylesheet)");
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+        graph.setAutoCreate(true);
+
+//        Viewer viewer = graph.display(false);
+//        View view = viewer.getDefaultView();
+
+//        view.resizeFrame(800, 600);
+//        view.setViewCenter(440000, 2503000, 0);
+//        view.setViewPercent(0.25);
+
+        graph.display();
+    }
+
+    public void  createGraph(List<EdgeModel> edgeModels){
         for(EdgeModel edgeModel:edgeModels){
-            if(edgeModel.getCount()<=120){
+            if(edgeModel.getCount()<=0){
                 continue;//跳过边的值为1 的情况
             }
             //构建起点
@@ -38,7 +57,10 @@ public class GraphVisualization {
                         true)   //设置方向，即有向图
                         .addAttribute("ui.label",edgeModel.getCount());
             }
+            try {
+                Thread.sleep(1000);
+            }catch (Exception e){
+            }
         }
-       return graph;
     }
 }

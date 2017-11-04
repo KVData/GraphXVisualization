@@ -1,7 +1,6 @@
 import data.EdgeModel;
 import data.MongUtil;
 import graph.GraphVisualization;
-import org.graphstream.graph.Graph;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String args[]){
         List<EdgeModel> edgeModels= MongUtil.readEdge();
-        Graph graph= GraphVisualization.creatGraph(edgeModels);
-        graph.display();
+        GraphVisualization graph=new GraphVisualization();
+        graph.createGraph(edgeModels);
     }
 }

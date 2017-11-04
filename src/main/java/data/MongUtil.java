@@ -32,7 +32,7 @@ public class MongUtil {
         MongoDatabase db = m.getDatabase("test");
         MongoCollection<Document> collection = db.getCollection("graph");
         BasicDBObject filter_dbobject = new BasicDBObject();
-        for (Document x: collection.find(filter_dbobject).sort(new BasicDBObject("count",-1))) {
+        for (Document x: collection.find(filter_dbobject).limit(100).sort(new BasicDBObject("count",-1))) {
             EdgeModel edge=new EdgeModel();
             edge.setFrom(x.getString("from"));
             edge.setTo(x.getString("to"));
